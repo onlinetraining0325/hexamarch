@@ -1,0 +1,96 @@
+To print values in PL/SQL, we have
+
+dbms_output.put_line() : used to display any value or message 
+
+begin 
+   dbms_output.put_line('Welcome to PL/SQL Programming...');
+END;
+
+To print message please turn on as
+
+set serverouput on
+
+declare
+    sname varchar2(30):='Poojitha';
+begin
+   dbms_output.put_line('Student Name is ' ||sname);
+end;
+
+declare
+    sname varchar2(30):='&sname';
+begin
+   dbms_output.put_line('Student Name is ' ||sname);
+end;
+
+declare
+    a number:=&a;
+    b number:=&b;
+    c number;
+begin
+    c:=a + b;
+    dbms_output.put_line('Sum is  ' || c);
+    c:=a-b;
+    dbms_output.put_line('Sub is  ' || c);
+    c:=a*b;
+    dbms_output.put_line('Mult is  ' || c);  
+end;
+
+declare
+   n number := &n;
+begin
+    if n >= 0 then
+    begin
+       dbms_output.put_line('Positive Number...');
+    end;
+    else
+    begin
+    	dbms_output.put_line('Negative Number...');
+    end;
+    end if;
+end;
+
+declare
+    n number := &n;
+begin
+   if n mod 2 = 0 then
+   begin
+     dbms_output.put_line('Even Number...');
+   end;
+   else
+   begin
+     dbms_output.put_line('Odd Number...');
+   end;
+   end if;
+end;
+
+declare
+   choice number:=&choice;
+   res varchar2(30);
+begin 
+    res:=case choice 
+	when 1 then 'Naveen'
+	when 2 then 'Sam'
+	when 3 then 'Poojitha'
+	when 4 then 'Geetha'
+        else 'Invalid'
+     end;
+    dbms_output.put_line(res);
+end;
+
+declare
+ v_grade char(2):='&v_grade';
+ v_appraisal varchar2(20);
+begin
+   v_appraisal:=
+    case v_grade
+       when 'A' then 'Excellent'
+       when 'B' then 'Good'
+       when 'C' then 'Satisfactory'
+       else 'No Such Grade '
+   end;
+   dbms_output.put_line('Appraisal is ' ||v_appraisal);
+end;
+
+
+
+

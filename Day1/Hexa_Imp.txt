@@ -1,0 +1,67 @@
+https://www.oracle.com/database/technologies/xe-downloads.html
+
+Prasanna.java.trainer@gmail.com
+
+onlinetraining0325@gmail.com
+
+https://github.com/onlinetraining0325/hexamarch
+
+https://onecompiler.com/plsql
+
+sqlplus / as sysdba
+ALTER SESSION SET CONTAINER = XEPDB1;
+CREATE USER hexa IDENTIFIED BY hexa;
+GRANT CONNECT, RESOURCE TO hexa;
+ALTER USER hexa QUOTA UNLIMITED ON USERS;
+
+CONNECT hexa/hexa@XEPDB1;
+
+CONNECT hexa/hexa@localhost:1521/XEPDB1;
+
+create table Employ
+(
+   Empno number primary key,
+   Name varchar2(30),
+   Dept varchar2(30),
+   Desig varchar2(30),
+   Basic Number(9,2)
+);
+
+Insert into Employ values(1,'subhadip','java',
+'programmer',48233);
+
+insert into Employ values(3,'Madhu','Sql',
+'developer',48231);
+
+insert into Employ values(4,'Namit','Java',
+'Programmer',82522);
+commit;
+
+create table Department
+(
+  Deptno number primary key,
+  Dname varchar2(30),
+  Loc varchar2(30),
+  City varchar2(30),
+  Head varchar2(30)
+);
+
+insert into Department 
+values(1,'Sql','Electronic City','Bangalore',
+'Srinivas');
+
+commit;
+
+Create Table Bank
+(
+   AccountNo number primary key,
+   FirstName varchar2(30),
+   LastName varchar2(30),
+   City varchar2(30),
+   State varchar2(30),
+   Amount Number(9,2),
+   CheqFacil varchar2(10),
+   AccountType varchar2(20),
+   Status varchar2(10) default 'active',
+   DateOfOpen Date Default sysdate
+);
