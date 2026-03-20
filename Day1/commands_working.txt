@@ -1,0 +1,108 @@
+1) How to See the Oracle Instance Name 
+
+SELECT * FROM GLOBAL_NAME;
+
+2) How to see the list of tables available in current instance 
+
+select * from tab;
+
+3) How to see the information about the particular table
+
+DESC table_name
+
+DESC EMP;
+
+DESC Dept;
+
+4) Display all recrods from EMP table 
+
+select * from Emp;
+
+5) Display Empno,Ename,job,sal from Emp table {Projection} 
+
+select empno,ename,job,sal
+from Emp;
+
+WHERE Clause : Used to display filtered records 
+
+6) Display records whose sal >= 2000;
+
+select * from Emp where sal >=2000;
+
+7) Display records whose job is 'CLERK';
+
+select * from Emp where job='CLERK';
+
+BETWEEN...AND : Allows you to display records from start...end range 
+
+select * from Emp where sal between 1000 and 2000;
+
+select * from Emp where sal NOT between 1000 and 2000;
+
+8) IN Clause : Used to check for multiple values of particular column
+
+Display records whose job is 'CLERK' or 'MANAGER' or 'PRESIDENT' 
+
+select * from Emp where job in('CLERK','MANAGER','PRESIDENT');
+
+9) LIKE Operator : Used to display records w.r.t. Wild Cards 
+
+--> Display all records whose name starts with 'S';
+
+select * from Emp where ename like 'S%';
+
+--> Display all records whose name ends with 'S';
+
+select * from Emp where ename like '%S';
+
+--> Display records whose Ename starts with 'J' and 2nd,3rd,4th char any 
+5th are S 
+
+select * from Emp where Ename LIKE 'J___S';
+
+-- Order By Clause : Allows you to Display records w.r.t. Specific field(s) in 
+ascending or descending order. 
+
+--> Display records on name wise ascending order 
+
+select Empno,Ename,job,sal,comm from Emp order by Ename;
+
+--> Display Records on Sal Wise Descending Order
+
+select Empno,Ename,job,sal,comm from Emp order by SAL DESC;
+
+--> 
+
+Select Empno,ename,job,sal,comm from Emp order by JOB,ENAME;
+
+
+Select Empno,ename,job,sal,comm from Emp order by JOB,SAL DESC;
+
+ROW_NUMBER() : Used to generate row_number for every record on particular field 
+
+It can be specified on over caluse
+
+select empno,ename,job,sal,row_number() OVER(Order By SAL DESC) as "RNO" from Emp;
+
+RANK() : Used to generate Rank No on the field Specified 
+
+select empno,ename,job,sal,RANK() OVER(Order By SAL DESC) as "RNO" from Emp;
+
+DENSE_RANK() : Used to generate sequential ranking on the field specified 
+
+select empno,ename,job,sal,DENSE_RANK() OVER(Order By SAL DESC) as "RNO" from Emp;
+
+-- DISTINCT : Used to eliminate duplicate entries at the time of display 
+
+select distinct job from Emp;
+
+
+
+
+
+
+
+
+
+
+
