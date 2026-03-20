@@ -203,11 +203,222 @@ END;
 
 Exec PrcSum(12,5);
 
+Create Table Employ
+(
+   Empno number primary key,
+   name varchar2(30),
+   dept varchar2(30),
+   desig varchar2(30),
+   basic numeric(9,2)
+);
+
+Insert  into Employ values(1,'Hariharan','Java','Programmer',88322);
+Insert  into Employ values(2,'Shreyansh','Java','Developer',91113);
+Insert  into Employ values(3,'Akhila','Dotnet','Manager',89003);
+Insert  into Employ values(4,'Vaishakh','Oracle','TeamLead',89944);
+Insert  into Employ values(5,'Dilip','SAP','DBA',89773);
+
+commit;
+
+-- Write a stored procedure to display total no.of records of Employ table.
+
+select count(*) from Employ;
+
+Create or Replace procedure prcEmployCount
+AS
+BEGIN
+    Declare
+	total_records number;
+    begin
+       select count(*) INTO total_records from Employ;
+       dbms_output.put_line('Total Records of Employ Table are ' || total_records);
+    end;
+END;
+
+Exec prcEmployCount;
+
+-- Write a Program to Accept Empno (as its PK) and print Name, Basic 
+
+Create Or Replace Procedure prcEmploySearch(eno employ.empno%type)
+AS
+BEGIN
+     Declare
+        Nam employ.name%type;
+        sal employ.basic%type;
+     begin
+       select Name,Basic INTO Nam,SAL from Employ where empno = eno;
+       dbms_output.put_line('Employ Name  ' || nam);
+       dbms_output.put_line('Salary is  ' || sal);
+     end;
+END;
+
+EXEC prcEmploySearch(1);
+
+Create Or Replace Procedure prcEmploySearch(eno employ.empno%type)
+AS
+BEGIN
+     Declare
+        Nam employ.name%type;
+        dep employ.dept%type;
+        dsg employ.desig%type;
+        sal employ.basic%type;
+     begin
+       select Name,Dept,Desig,Basic INTO Nam,Dep,Dsg,sal from Employ where empno = eno;
+       dbms_output.put_line('Employ Name  ' || nam);
+       dbms_output.put_line('Department  ' || dep);
+       dbms_output.put_line('Designation  ' || dsg);
+       dbms_output.put_line('Salary is  ' || sal);
+     Exception
+	WHEN NO_DATA_FOUND THEN 
+	  dbms_output.put_line('Employ No ' || eno  ||' Data Not Found ');
+     end;
+END;
+
+EXEC prcEmploySearch(1);
+
+-- Write a Procedure to Insert Records into Employ Table 
+
+Create or Replace Procedure prcEmployInsert(
+	eno employ.empno%type,
+        nam employ.name%type,
+        dpt employ.dept%type,
+        dsg employ.desig%type,
+        bas employ.basic%type
+)	
+AS
+BEGIN
+	Insert into Employ(empno,name,dept,desig,basic) 					values(eno,nam,dpt,dsg,bas);
+       Exception
+            when DUP_VAL_ON_INDEX then
+		dbms_output.put_line('Employ No ' || eno || ' already exists');
+END;
+
+Exec PrcEmployInsert(16,'Sivahari','Java','Programmer',87832);
 
 
+Create or replace procedure prcDivision(a number,b number)
+AS
+BEGIN
+	Declare
+	    c number;
+        begin
+ 	    c:=a/b;
+            dbms_output.put_line('Division Value is ' || c);
+        Exception
+	    WHEN ZERO_DIVIDE THEN
+		dbms_output.put_line('Division by zero impossible...');
+        end;
+END;
+
+Create or Replace Procedure prcEmployUpdate(
+	eno employ.empno%type,
+        nam employ.name%type,
+        dpt employ.dept%type,
+        dsg employ.desig%type,
+        bas employ.basic%type
+)	
+AS
+BEGIN
+       Update Employ set Name = Nam, Dept = Dpt, Desig = Dsg, 
+	 Basic = Bas WHERE Empno = eno;
+       dbms_output.put_line('Employ Record Updated...' ||eno);	
+       Exception
+            when NO_DATA_FOUND then
+		dbms_output.put_line('Employ No ' || eno || ' Not Found');
+END;
+
+CREATE OR REPLACE PROCEDURE prcEmployDelete(eno employ.empno%TYPE)
+AS
+   total_records NUMBER;
+BEGIN
+   SELECT COUNT(*) 
+   INTO total_records 
+   FROM employ 
+   WHERE empno = eno;
+
+   IF total_records = 1 THEN
+      DELETE FROM employ WHERE empno = eno;
+      DBMS_OUTPUT.PUT_LINE('Employ record Deleted successfully...');
+   ELSE
+      DBMS_OUTPUT.PUT_LINE('Employ Record Not Found...');
+   END IF;
+END;
+/
+
+Create or replace procedure prcEmploySearch(eno employ.empno%type)
+AS
+BEGIN	
+	Declare
+	    employ_rec employ%rowType;
+        begin
+	   select * into employ_rec from Employ where empno = eno;
+	   dbms_output.put_line('Employ Name  ' || employ_rec.name);
+	   dbms_output.put_line('Employ Department ' || employ_rec.dept);
+	   dbms_output.put_line('Employ Designation ' || employ_rec.desig);
+	   dbms_output.put_line('Salary  ' || employ_rec.basic);
+	exception 
+	   WHEN NO_DATA_FOUND THEN
+	     dbms_output.put_line('Employ Record Not Found...');
+        end;
+END;
+
+Types of Parameters : 
+
+IN  : Used for input purpose By default ORACLE takes IN param.
+
+OUT : If you want to return more than one value then we need to use out parameter.
+
+OUT parameter procedures needs to be executed from another stored procedure. 
+
+Create or replace Procedure prcEmployCount(total_records OUT number)
+AS
+BEGIN
+   select count(*) INTO total_records from Employ;
+END;
+
+Create or replace procedure prcEmployShowCount
+AS
+BEGIN
+    Declare
+	total_records number;
+    begin
+	prcEmployCount(total_records);
+	dbms_output.put_line('Total Records  ' || total_records);
+    end;
+END;
 
 
+Create or replace procedure prcEmploySearch(eno employ.empno%type,
+		nam OUT employ.name%type,
+                dpt OUT employ.dept%type,
+                dsg OUT employ.desig%type,
+                sal OUT employ.basic%type)
+AS
+BEGIN
+    select Name,Dept,Desig,Basic into Nam,Dpt,Dsg,Sal from Employ
+	where empno=eno;
+END;
 
+
+create or replace procedure prcEmploySearchShow(eno employ.empno%type)
+AS
+BEGIN
+	declare
+	   nam employ.name%type;
+           dpt employ.dept%type;
+           dsg employ.desig%type;
+           sal employ.basic%type;
+        BEGIN
+	   prcEmploySearch(eno,nam,dpt,dsg,sal);
+	   dbms_output.put_line('Name  ' ||nam);
+	   dbms_output.put_line('Department  ' ||dpt);
+	   dbms_output.put_line('Designation  ' || dsg);
+	   dbms_output.put_line('Salary  ' ||sal);
+        Exception
+	   WHEN NO_DATA_FOUND THEN
+		dbms_output.put_line('No record found...');
+        END;
+END;
 
 
 
