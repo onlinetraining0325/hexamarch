@@ -92,5 +92,131 @@ begin
 end;
 
 
+Stored Procedures : A procedure is a subprogram generally used to perform an action and to pass values. 
+
+Procedures are made up of : 
+
+1) A declarative part;
+2) An executable part and 
+3) An optional exceptional-handling part. 
+
+How Actually Oracle Create a Procedure : 
+
+When the procedure is created, Oracle automatically performs the following steps : 
+
+1) Compiles the procedure
+2) Stores the compiled procedure
+3) Stores the procedure in the database. 
+
+If you want to display the list of procedures created in the oracle, then we need the help of 
+
+select * from user_objects where object_type='PROCEDURE';
+
+syntax : 
+
+create or replace procedure proc_name {pars IN, OUT, or IN OUT} 
+Varible declarations; 
+constant declarations;
+begin
+   pl/sql subprogram body;
+exception
+   exception pl/sql block;
+end;
+
+_______________________________________________________________________________________
+create or replace procedure sums
+as
+begin
+   declare
+     a number(5):=5;
+     b number(5):=7;
+     c number(5);
+   begin
+     c:=a+b;
+     dbms_output.put_line('Sum is  ' ||c);
+  end;
+end sums;
+
+If you want to execute the procedure then you need to give
+
+exec proc_name
+
+exec sums
+
+select object_name,object_type,status from user_objects where object_type='PROCEDURE';
+
+_____________________________________________________________________________________
+
+Create or replace procedure prcSayHello
+AS
+BEGIN
+   dbms_output.put_line('Welcome to Stored Procedures...');
+END;
+
+to Execute the stored procedure 
+
+EXEC prcSayHello;
+
+Create or replace procedure prcCompany
+AS
+BEGIN
+    dbms_output.put_line('Company is Hexaware...');
+END;
+
+Exec prcCompany;
+
+Create or Replace Procedure prcTopic
+AS
+BEGIN
+   dbms_output.put_line('Topic is Java FSD...');
+END;
+
+Exec prcTopic;
+
+How to execute the above 2 procedures from single procedure 
+
+Create or Replace Procedure prcExecAll
+AS
+BEGIN
+   PrcCompany;
+   PrcTopic;
+END;
+
+EXEC PrcExecAll;
+
+create or replace procedure prcGreeting(sname varchar2)
+AS
+BEGIN
+    dbms_output.put_line('Student Name is  ' ||sname);
+END;
+
+Create or replace procedure prcSum(a number,b number)
+AS
+BEGIN
+   Declare
+     c number;
+   begin
+      c:=a+b;
+      dbms_output.put_line('Sum is  ' ||c);
+   end;
+END;
+
+Exec PrcSum(12,5);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
