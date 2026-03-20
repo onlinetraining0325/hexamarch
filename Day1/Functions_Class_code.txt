@@ -1,0 +1,173 @@
+
+create or replace function fnGreeting return varchar2
+AS
+BEGIN
+    return 'Welcome to PL/SQL Funcitons...'
+END;
+
+create or replace function greeting return varchar2
+AS
+BEGIN
+     return 'Welcome to PL/SQL Functions';
+END;
+
+Create or replace function greeting(eno number) RETURN varchar2
+AS
+BEGIN
+    Declare
+       res varchar2(30);
+    begin
+         res := case eno
+        when 1 then 'Lingeshwar'
+        when 2 then 'Durga'
+        when 3 then 'Adesh'
+        when 4 then 'Sam'
+         else 'unknown' end;
+    return res;
+
+    end;
+END;
+
+select greeting(1) from dual;
+
+Create or replace function tax(sal employ.basic%type) RETURN Number
+AS
+BEGIN
+	return sal * 0.03;
+END;
+
+select tax(10000) from dual;
+
+select empno,name,basic,tax(basic),basic-tax(basic)  "Take Home"
+from Employ;
+
+Create or replace function tds(sal employ.basic%type) RETURN number
+AS
+BEGIN
+	return sal *0.1;
+END;
+
+select empno,name,basic,tds(basic) "Tds", basic-tds(basic) "Take Home"
+from Employ;
+
+Create or replace function fnEmployTotalRecords RETURN NUMBER
+AS
+BEGIN
+   Declare
+	total_records Number;
+   BEGIN
+	select count(*) INTO Total_Records from Employ;
+	return total_records;
+   END;
+END;
+
+select empno,ename,job,sal,
+case WHEN comm IS NULL THEN 0 ELSE COMM
+end "comm" from Emp;
+
+select empno,ename,job,sal,
+case WHEN comm IS NULL THEN 0 ELSE COMM
+end "comm", CASE WHEN COMM IS NULL THEN SAL ELSE
+SAL+COMM END "TakeHome" from Emp;
+
+
+select case when max(accountNo) IS NULL THEN 1
+else max(accountNo)+1 end accno from Accounts;
+
+
+create function fnGenerateAccountNo RETURN NUMBER
+AS
+BEGIN
+   Declare
+      accno accounts.AccountNo%type;
+   BEGIN
+     select case when max(accountNo) IS NULL THEN 1
+else max(accountNo)+1 end INTO Accno from Accounts;
+     return accno;
+   END;
+END;
+
+Create or Replace procedure prcAccountCreate(
+	fname Accounts.FirstName%type,
+        lname Accounts.LastName%type,
+        cit Accounts.City%type,
+        st Accounts.State%type,
+        amt Accounts.Amount%type,
+        cf Accounts.CheqFacil%type,
+        atype Accounts.AccountType%type)
+AS
+BEGIN
+	Declare
+	   accno Number;
+        BEGIN
+	   select fnGenerateAccountNo() INTO accno from dual;
+	   Insert into Accounts(AccountNo,FirstName,LastName,City,State,
+		Amount,CheqFacil,AccountType) values(accno,fname,lname,cit,st,
+			amt,cf,atype);
+	   dbms_output.put_line('Account Created with Account No ' || accno);
+        END;
+END;
+
+Exec PrcAccountCreate('Lingeeswar','TS','Chennai','TN',88233,'YES','Savings');
+
+Exec PrcAccountCreate('Siva','Hari','Chennai','TN',91233,'YES','Savings');
+
+Create Or Replace Procedure PrcAccountSearch(accno Accounts.AccountNo%type)
+AS
+ fname accounts.firstName%type;
+   lname accounts.lastName%type;
+   cit accounts.city%type;
+   st accounts.state%type;
+   amt accounts.amount%type;
+   cf accounts.cheqFacil%type;
+   atype accounts.AccountType%type;   
+BEGIN
+   Select FirstName,LastName,City,State,Amount,CheqFacil,AccountType
+	INTO Fname,Lname,cit,St,Amt,Cf,Atype FROM Accounts 
+     WHERE AccountNo=accno;
+   dbms_output.put_line('First Name ' ||fname);
+   dbms_output.put_line('Last Name ' ||lname);
+   dbms_output.put_line('City ' ||cit);
+   dbms_output.put_line('State ' ||st);
+   dbms_output.put_line('Amount ' ||amt);
+   dbms_output.put_line('Cheq Facil ' ||cf);
+   dbms_output.put_line('Account Type ' ||atype);
+Exception
+   WHEN NO_DATA_FOUND THEN
+      dbms_output.put_line('Account No Does Not Exist...');
+END;
+
+exec prcAccountSearch(2);
+
+
+Create or replace procedure prcAccountDeposit(accno Accounts.AccountNo%type,
+			depAmount Accounts.Amount%type)
+AS
+BEGIN
+    Update Accounts Set Amount = Amount+depAmount where AccountNo = Accno;
+    Insert into Trans(AccountNo,TranAmount,TranType) values(Accno,depAmount,'C');
+END;
+
+Exec PrcAccountDeposit(1,10000);
+
+Create Or Replace Procedure prcAccountWithdraw(
+             accno Accounts.AccountNo%type,
+             wamt number)
+AS
+    balance number;
+BEGIN
+     select amount into balance from accounts where accountno=accno;
+     if (balance-wamt >= 0) then
+          Update Accounts set Amount = Amount - wamt WHERE AccountNo=Accno;
+     Insert into Trans(AccountNo,TranAmount,TranType) 
+		values(accno,wamt,'D');
+        dbms_output.put_line('Amount Debited Successfully...');
+        else 
+          dbms_output.put_line('Insufficient Funds...');
+     end if;
+End;
+
+Exec PrcAccountWithdraw(1,5000);
+Exec PrcAccountWithdraw(1,500000);
+
+
