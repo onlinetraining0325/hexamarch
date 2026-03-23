@@ -1,0 +1,283 @@
+
+declare 
+    cursor cursorEmploy is 
+      select empno,name,dept,desig,basic from Employ;
+    eno employ.empno%type;
+    nam employ.name%type;
+    dpt employ.dept%type;
+    dsg employ.desig%type;
+    bas employ.basic%type;
+    cnt number;
+begin
+    select count(*) into cnt from Employ;
+    open cursorEmploy;
+    loop
+      fetch cursorEmploy into eno,nam,dpt,dsg,bas;
+      dbms_output.put_line('------------------------------');
+      dbms_output.put_line('Employ No ' || eno);
+      dbms_output.put_line('Employ Name ' || nam);
+      dbms_output.put_line('Department  ' || dpt);
+      dbms_output.put_line('Designation  ' || dsg);
+      dbms_output.put_line('Salary  ' || bas);
+      exit when cursorEmploy%rowcount = cnt;
+    end loop;
+    close cursorEmploy;
+end;
+__________________________________________________________________
+
+create or replace procedure prcCursorShow 
+AS
+BEGIN
+declare 
+   cursor cursor_employ is select empno,Name,Dept,Desig,Basic 
+   from Employ;
+   eno employ.empno%type;
+   nam employ.name%type;
+   dpt employ.dept%type;
+   dsg employ.desig%type;
+   bas employ.basic%type;
+   cnt number;
+begin
+    select count(*) into cnt from Employ;
+    open cursor_employ;
+    loop
+     fetch cursor_employ into eno,nam,dpt,dsg,bas;
+      dbms_output.put_line('--------------------------------');
+      dbms_output.put_line('Employ No ' ||eno);
+      dbms_output.put_line('Name ' ||nam);
+      dbms_output.put_line('Department ' ||dpt);
+      dbms_output.put_line('Designation ' ||dsg);
+      dbms_output.put_line('Salary ' ||bas);
+      dbms_output.put_line('--------------------------------');
+     exit when cursor_employ%rowcount = cnt;
+    end loop;
+    close cursor_employ;
+end;
+END;
+
+----------------------------------------------------- To execute the stored proc ----------
+
+exec prcCursorShow;
+
+______________________________________________________________________________________
+
+
+create or replace procedure prcCursorShow 
+AS
+BEGIN
+declare 
+   cursor cursor_employ is select empno,Name,Dept,Desig,Basic 
+   from Employ;
+   eno employ.empno%type;
+   nam employ.name%type;
+   dpt employ.dept%type;
+   dsg employ.desig%type;
+   bas employ.basic%type;
+   cnt number;
+begin
+    select count(*) into cnt from Employ;
+    open cursor_employ;
+    loop
+     fetch cursor_employ into eno,nam,dpt,dsg,bas;
+      dbms_output.put_line('--------------------------------');
+      dbms_output.put_line('Employ No ' ||eno);
+      dbms_output.put_line('Name ' ||nam);
+      dbms_output.put_line('Department ' ||dpt);
+      dbms_output.put_line('Designation ' ||dsg);
+      dbms_output.put_line('Salary ' ||bas);
+      dbms_output.put_line('--------------------------------');
+      exit when nam='Poojitha';
+    end loop;
+    close cursor_employ;
+end;
+END;
+
+__________________________________________________________________________________
+
+To Execute the stored procedure
+
+exec prcCursorShow;
+
+____________________________________________________________________________________
+
+
+Create or replace procedure prcEmployCursorShow
+AS
+BEGIN
+  Declare 
+    Cursor cursorEmploy is select empno,name,dept,desig,basic from Employ;
+    eno employ.empno%type;
+    nam employ.name%type;
+    dpt employ.dept%type;
+    dsg employ.desig%type;
+    bas employ.basic%type;
+  BEGIN
+     OPEN cursorEmploy;
+     LOOP
+      fetch cursorEmploy into eno, nam, dpt, dsg, bas;
+      dbms_output.put_line('Employ No ' ||eno);
+      dbms_output.put_line('Name ' ||nam);
+      dbms_output.put_line('Department ' ||dpt);
+      dbms_output.put_line('Designation ' ||dsg);
+      dbms_output.put_line('Salary ' ||bas);
+      dbms_output.put_line('--------------------------------');
+      exit when cursorEmploy%NOTFOUND;
+     END LOOP;
+  END;
+END;
+
+EXEC prcEmployCursorShow;
+
+____________________________________________________________________________________
+
+Code to Fetch Data Record By Record 
+
+Create or Replace Procedure prcEmployCursorShow
+AS
+BEGIN
+    Declare 
+       Cursor cursorEmploy is select empno,name,dept,desig,basic FROM EMPLOY;
+    begin
+       for rec in cursorEmploy
+       loop
+	  dbms_output.put_line('Employ No  ' ||rec.empno);
+	  dbms_output.put_line('Employ Name  ' || rec.name);
+          dbms_output.put_line('Department  ' ||rec.dept);
+          dbms_output.put_line('Designation  ' ||rec.desig);
+          dbms_output.put_line('Salary   ' ||rec.basic);
+	  dbms_output.put_line('---------------------------------');
+       end loop;
+    end;
+END;
+_________________________________________________________________________________________
+
+Create or Replace Procedure prcEmployCursorShow
+AS
+BEGIN
+    Declare 
+       Cursor cursorEmploy is select empno,name,dept,desig,basic FROM EMPLOY;
+    begin
+       for rec in cursorEmploy
+       loop
+          if rec.dept='Java' then 
+	    Update Employ set Basic = Basic+3000;
+	    dbms_output.put_line('Java Dept Got Increment by 3K...');
+	    commit;
+          end if;
+	  dbms_output.put_line('Employ No  ' ||rec.empno);
+	  dbms_output.put_line('Employ Name  ' || rec.name);
+          dbms_output.put_line('Department  ' ||rec.dept);
+          dbms_output.put_line('Designation  ' ||rec.desig);
+          dbms_output.put_line('Salary   ' ||rec.basic);
+	  dbms_output.put_line('---------------------------------');
+       end loop;
+    end;
+END;
+____________________________________________________________________________________
+
+Create or Replace procedure prcEmploySearchByDept 
+AS
+BEGIN
+    Declare 
+	cursor cursoremploy is select empno,name,dept,desig,basic from Employ where 
+		dept='Java';
+    Begin
+       for rec in cursorEmploy
+       loop
+          dbms_output.put_line('Employ No  ' ||rec.empno);
+	  dbms_output.put_line('Employ Name  ' || rec.name);
+          dbms_output.put_line('Department  ' ||rec.dept);
+          dbms_output.put_line('Designation  ' ||rec.desig);
+          dbms_output.put_line('Salary   ' ||rec.basic);
+	  dbms_output.put_line('-------------------------------');
+       end loop;
+    End;
+END;
+
+________________________________________________________________________________
+
+Create Table Login
+(
+   username varchar(30) Primary Key,
+   passcode varchar(30)
+);
+
+Insert into Login(UserName,Passcode) values('Ayush','Tripathi');
+Insert into Login(UserName,passCode) values('Hemanth','Bala');
+Insert into Login(Username,Passcode) values('Nikhitha','Balabhadra');
+
+-- Write a code function to check username and password are correct or not
+
+select count(*) "Cnt" from Login where userName='Lingeshwar'AND Passcode='Lingeshwar';
+
+Create or replace function loginCheck(uname login.username%type, pwd login.passcode%type)
+		return number
+AS
+   cnt number;
+BEGIN
+ select count(*) into cnt from Login where Username=uname AND
+		passcode=pwd;
+     return cnt;
+END;
+
+Create or replace procedure prcLoginCheck(
+uname login.username%type,pwd login.passcode%type)
+AS
+   cnt number;
+BEGIN
+   select logincheck(uname,pwd) into cnt from dual;
+   if cnt=1 then
+     dbms_output.put_line('Correct Credentials...');
+   else
+     dbms_output.put_line('Invalid Credentials...');
+   end if;
+END;
+
+____________________________________________________________________________________
+
+Create or replace procedure prcAccountShow
+AS
+BEGIN
+declare
+ cursor cursor_acc is select AccountNo,FirstName,LastName,City,State,Amount from Accounts;
+begin
+    for rec in cursor_acc   
+    loop
+	dbms_output.put_line('Account No ' || rec.accountNo);
+	dbms_output.put_line('First Name ' || rec.firstname);
+	dbms_output.put_line('Last Name ' || rec.lastName);
+	dbms_output.put_line('City ' || rec.city);
+	dbms_output.put_line('State ' || rec.state);
+	dbms_output.put_line('Amount ' || rec.amount);
+	dbms_output.put_line('--------------------------');
+    end loop;
+end;
+END;
+
+_________________________________________________________________________________
+
+CREATE OR REPLACE PROCEDURE prcEmployCursorShow(dpt VARCHAR2)
+AS
+    -- Cursor with parameter
+    CURSOR cursorEmploy(p_dpt VARCHAR2) IS
+        SELECT empno, name, dept, desig, basic 
+        FROM employ
+        WHERE dept = p_dpt;
+
+BEGIN
+    -- Passing parameter to cursor
+    FOR rec IN cursorEmploy(dpt)
+    LOOP
+        dbms_output.put_line('Employ No      : ' || rec.empno);
+        dbms_output.put_line('Employ Name    : ' || rec.name);
+        dbms_output.put_line('Department     : ' || rec.dept);
+        dbms_output.put_line('Designation    : ' || rec.desig);
+        dbms_output.put_line('Salary         : ' || rec.basic);
+        dbms_output.put_line('---------------------------------');
+    END LOOP;
+END;
+/
+
+EXEC prcEmployCursorShow('Oracle');
+
+
