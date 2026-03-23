@@ -1,0 +1,228 @@
+Create table Student
+(
+    Sno number primary key,
+    name varchar2(30),
+    sub1 number,
+    sub2 number,
+    sub3 number,
+    total number,
+    aveg number(9,2)
+);
+
+Create or replace trigger trgStudentUpdate AFTER Insert ON Student
+BEGIN
+    Update Student set total = (sub1+sub2+sub3), aveg = (sub1+sub2+sub3)/3;
+END;
+
+Insert into Student(sno,name,sub1,sub2,sub3) values(1,'Lingeshwar',88,66,87);
+Insert into Student(sno,name,sub1,sub2,sub3) values(2,'Durga Devi',91,69,89);
+
+
+Create Table EmployPayRoll
+(
+    Empno Number Primary Key,
+    Name varchar2(30),
+    Basic number,
+    Hra Number, 
+    Da Number, 
+    Ta Number, 
+    Tax Number, 
+    Pf number,
+    gross number, 
+    netpay number
+);
+
+Create Or Replace Trigger trgEmployPayroll AFTER INSERT ON EmployPayRoll
+BEGIN
+     Update EmployPayroll set Hra = basic * 0.003, Da = Basic * 0.0012,
+		ta = basic * 0.0011;
+     Update EmployPayroll SET Tax = Basic * 0.002, Pf = Basic * 0.12;
+     Update EmployPayroll set Gross = Basic + Hra + Da + ta;
+     Update EmployPayroll set NetPay = Gross - tax - pf;
+END;
+
+Insert into EmployPayRoll(Empno,name,basic) values(1,'Vinodha',77723.23);
+
+drop trigger GENEATEPAYROLL;
+
+There are various types of triggers we have as 
+
+BEFORE Trigger : This trigger executes before the INSERT 
+
+AFTER Trigger
+
+Instead Of Trigger 
+
+Assume, i want to insert record into Employ table, but empno not > 100 that condition we have to check by using Trigger 
+
+A trigger contains 2 keywords as :new, :old
+
+:new contains all the recently inserted record value 
+
+:old contains deleted/updated value records 
+
+CREATE OR REPLACE TRIGGER trgEmpOperation
+BEFORE INSERT ON EMPLOY
+FOR EACH ROW
+BEGIN
+    IF :NEW.empno >= 100 THEN
+        RAISE_APPLICATION_ERROR(-20001, 
+            'Employee No cannot be >= 100');
+    END IF;
+END;
+/
+
+Create Table Customer
+(
+   Id INT Primary Key,
+   Name varchar2(30),
+   City varchar2(30),
+   Amount number
+);
+
+
+Create Table CustomerBackup
+(
+   Id INT,
+   Name varchar2(30),
+   City varchar2(30),
+   Amount number,
+   Operation varchar2(30),  
+   OperationDate Date default sysdate
+);
+
+-- Create a trigger ensures all inserted records to be stored in CustomerBackup table 
+with Operation Name 
+
+create or replace trigger trgCustomerInsert AFTER INSERT ON Customer 
+FOR EACH ROW
+BEGIN
+    Insert into CustomerBackup(id,name,city,amount,operation)
+	values(:new.id,:new.name,:new.city,:new.amount,'Insert Operation');
+END; 
+
+-- Create a trigger ensures all old records of updated to be stored in CustomerBackup table 
+
+Create or replace trigger trgCustomerUpdate AFTER UPDATE ON CUSTOMER
+FOR EACH ROW
+BEGIN
+     Insert into CustomerBackup(id,name,city,amount,operation)
+	values(:old.id,:old.name,:old.city,:old.amount,'Update Operation');
+END;
+
+Update Customer set name='Lingeshwar',City='Chennai',amount=88823 where id=1;
+
+-- Create a trigger ensures all deleted records to be stored in CustomerBackup table
+
+create or replace trigger trgCustomerDelete AFTER DELETE ON CUSTOMER
+FOR EACH ROW
+BEGIN
+ Insert into CustomerBackup(id,name,city,amount,operation)
+	values(:old.id,:old.name,:old.city,:old.amount,'Delete Operation');
+END;
+
+Delete from Customer where id=4;
+
+Create Table Asset
+(
+   AssetId number primary key,
+   AssetName varchar2(30),
+   AssetType varchar2(30),
+   cost number(9,2),
+   status varchar2(30) default 'AVAILABLE'
+);
+
+drop table AssetHistory;
+
+Create Table AssetHistory
+(
+   AssetId number,
+   AssetName varchar2(30),
+   AssetType varchar2(30),
+   cost number(9,2),
+   status varchar2(30),
+   opDate Date default sysdate,
+   description varchar2(30)
+);
+
+Create or replace trigger trgAssertAdd AFTER INSERT ON Asset
+for each row
+BEGIN
+     Insert into AssetHistory(AssetId,AssetName,AssetType,Cost,
+	status,Description) values(:new.assetId,:new.assetName,:new.assetType,
+		:new.cost,:new.status,'INSERT OP');
+END;
+
+Insert into Asset(AssetId,AssetName,AssetType,Cost) values(1,'Laptop','System',80000);
+
+Insert into Asset(AssetId,AssetName,AssetType,Cost)
+values(2,'Mobile','Nokia',29000);
+
+Insert into Asset(AssetId,AssetName,AssetType,Cost)
+values(3,'Marker','Camlin',120);
+
+Insert into Asset(AssetId,AssetName,AssetType,Cost)
+values(4,'NAD Card','KT Project',99999);
+
+Create or replace trigger trgAssetUpdate AFTER Update On Asset
+For Each Row
+BEGIN
+     Insert into AssetHistory(AssetId,AssetName,AssetType,Cost,
+	status,Description) values(:old.assetId,:old.assetName,
+		:old.assetType,:old.cost,:old.status,'Update OP');
+END;
+
+Update Asset set AssetName='BlackBoard',AssetType='Teaching',Cost=888
+WHERE AssetId=3;
+
+Create or replace trigger trgAssetDelete AFTER Delete On Asset
+For Each Row
+BEGIN
+     Insert into AssetHistory(AssetId,AssetName,AssetType,Cost,
+	status,Description) values(:old.assetId,:old.assetName,
+		:old.assetType,:old.cost,:old.status,'Delete OP');
+END;
+
+
+Delete from Asset where AssetId=4;
+
+Instead of trigger to be created on Views 
+
+Create Table EmpNew
+(
+   Eid Number primary key,
+   nam varchar(30),
+   sal numeric(9,2)
+);
+
+
+Create Table LeaveHistory
+(
+   leaveId number primary key,
+   eid number references EmpNew(eid),
+   leaveReason varchar2(30) 
+);
+
+create view vwEmpLeaves
+as
+   select E1.Eid,E1.nam,E1.sal,Lh.leaveId,Lh.leaveReason
+     from EmpNew E1 INNER JOIN LeaveHistory LH on
+	E1.Eid=Lh.Eid;
+
+
+Create or replace trigger trg_View_Ins
+INSTEAD OF INSERT ON vwEmpLeaves
+FOR EACH ROW
+BEGIN
+    Insert into EmpNew(Eid,nam,sal) values(:new.eid,:new.nam,:new.sal);
+    Insert into LeaveHistory(leaveId,eid,leaveReason) values(:new.leaveId,
+	:new.eid,:new.leaveReason);
+END;
+
+Insert into VwEmpLeaves values(1,'Lingeshwar',84823,10,'Going Home');
+
+
+
+
+
+
