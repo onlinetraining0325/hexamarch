@@ -1,0 +1,12 @@
+1) Write Stored Procedures to perform CRUD operations on Courses and Faculty tables
+
+AddCourse
+SearchCourse
+UpdateCourse
+DeleteCourse
+
+AddFaculty
+SearchFaculty
+UpdateFaculty
+DeleteFaculty
+
