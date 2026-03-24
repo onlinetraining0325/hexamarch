@@ -92,6 +92,57 @@ protected  : Allows you to access members within current/derived class.
 
 default/friendly : Allows you to access members within all classes of current package. 
 
+super keyword : If you want to pass values from derived class to base class, then we need the help of super keyword. It has 2 forms as 
+
+	(i) super as a keyword
+
+	(ii) super as a constructor 
+
+Abstract Class : A class that which can be created but not implemented and instantiated known as abstract class.  Abstract class contains abstract and non-abstract methods, abstract methods needs to be overrided mandatorily by the derived class. 
+
+abstract class class_name {
+   abstract method1();
+   abstract method2();
+}
+
+interface : Java does not support the concept of multiple inheritance, to achieve this we need the help of interfaces.  An interface contains method declaration, and the implementation can be done in the corresponding class, you can add more than one interface to the particular class. 
+
+interface will be added to the class by using implements keyword. 
+
+Difference between interface and abstract class : 
+__________________________________________________
+
+-> An abstract class contains abstract and non-abstract methods, where interface contains only abstract methods.
+
+-> Interface methods are public and abstract by default
+
+-> Multiple Inheritance can be achieved by using interfaces
+
+-> An interface can be called from anywhere to anywhere. 
+
+interface IDemo {
+  method1();
+  method2();
+}
+
+default methods : After jdk1.8 we can write code in interface methods also, those methods are known as default methods. 
+
+Collections : Arrays are static data structures, means once they are assigned we cannot alter the values, but if you want to enter data irrespective of size, then we need the help of collections.  Collections can grow to any size unlike arrays. 
+
+Collections stores data in terms of Object format. 
+
+There are various top level interfaces we have in collections as
+
+(i) List Interface : Allows you to store list of values. ArrayList, LinkedList and Vector are falling under List Interface.
+
+(ii) Set Interface
+
+(iii) SortedSet Interface 
+
+
+
+
+
 
 
 
