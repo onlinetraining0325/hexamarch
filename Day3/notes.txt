@@ -139,6 +139,50 @@ There are various top level interfaces we have in collections as
 
 (iii) SortedSet Interface 
 
+______________________________________________________________________________________
+
+Exceptional Handling : It is a mechanism of handling the runtime errors during the execution of the program. 
+
+There are 2 types of errors known as 
+
+	(i) Compile Time
+
+	(ii) Runtime 
+
+By using Exception handling, we can overcome the runtime errors. 
+
+To Handle Exceptions we have 3 blocks known as 
+
+(i) try block : This block contains statements in which there is possibility of getting runtime errors, the statements which are placed in this block are treated as heavy weighted statements as JVM allocates excess memory to them. 
+
+(ii) catch block : Once exception raised in try block, then the control will be forwarded to catch block, this block contains alternate statement(s) for exceptions raised in try block. One try block can contains multiple catch blocks. 
+
+(iii) finally block : This block contains statement(s) that needs to be executed mandatorily irrespective of try and catch blocks, this block is not mandatory, but all the statements which are placed in this block are executed as mandatory statements. 
+
+try {
+...
+...
+...
+} catch (Exception e) {
+...
+...
+...
+} finally {
+...
+...
+...
+}
+
+Exception is the top most class from which all kinds of exceptions are derived. 
+
+There are 2 types of Exceptions known as 
+
+(i) Checked Exceptions : These are the Exceptions that which occurs at compile time, during compilation JVM feels some errorneous code is there and stops the execution at compile time can be handled at method level by using throws keyword. 
+
+(ii) Unchecked Exceptions : These are the exceptions that which occurs at runtime can be handled by using try...catch block. 
+
+
+
 
 
 
