@@ -1,0 +1,76 @@
+What is Maven 
+
+Maven is a build tool, that which allows you to add
+
+	-> Plugins
+
+	-> Dependencies
+
+	-> Securities
+
+	-> Policies 
+
+to the given project. 
+
+It has various filters using that we can create a project more easiest way. 
+
+The heart for Maven Project is pom.xml (Project Object Model) that resides in the base directory of the project as pom.xml
+
+The POM contains information about the project and various configuration details used by maven  to build the project(s)
+
+pom contains various informations as
+
+   -> Project Dependencies
+
+   -> Plugins
+
+   -> Goals
+
+   -> Build Profiles
+
+   -> Project Version
+
+   -> Developers
+
+   -> Any Polices
+
+Maven contains the build life cycle as 
+
+prepare-resources 	-> Used for copy the existing resources  
+
+validate		-> Validating information 
+
+compile  -> Source code to be compiled
+
+Test -> Implement testing as execute the written test cases
+
+package -> Creates either jar/war files 
+
+install -> Any repository dependencies to be added
+
+deploy -> Copies the final copy into remote
+
+Maven contains various repositories as 
+
+-> Local Repo 
+
+	it is a folder which exists in your system (c:\users\user_name\.m2) Local repo keeps your project's all dependencies (jars/plugins etc) when you run a maven build, then maven automatically downloads all the dependency jars into local repo. It helps in avoid references to dependencies stored on remote machine.
+
+-> Central Repo : Maven Central repository is a repo provided by maven community, the repo address by default is 
+
+https://repo.maven.apache.org/maven2/archetype-catalog.xml
+
+if any existing dependency not available in local repo, then it check in the central repo address
+
+-> Remote Repo
+
+	Maven does not find a mentioned dependency in central as well.  It then stops the build process and output error message to console.  To prevent such situation, maven provides concept of Remote Repository.  
+
+<dependency>
+   <groupId>com.mysql</groupId>
+   <artifactId>mysql-connector-j</artifactId>
+   <version>8.0.33</version>
+</dependency>
+
+add after 19th line
+
