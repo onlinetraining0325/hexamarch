@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="bean1" class="com.java.spr.HelloImpl">
+		<constructor-arg value="Welcome to Hexaware..." />
+		<constructor-arg value="Thank You For Joining Training Mr/Miss/Mrs  " />
+		<constructor-arg value="All the best for Coming Exams and Project" />
+	</bean>
+</beans>

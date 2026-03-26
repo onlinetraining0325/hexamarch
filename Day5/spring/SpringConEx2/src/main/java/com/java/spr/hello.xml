@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="bean1" class="com.java.spr.HelloImpl">
+		<constructor-arg value="Good Morning..." />
+	</bean>
+	<bean id="bean2" class="com.java.spr.HelloImpl">
+		<constructor-arg value="Good Afternoon..." />
+	</bean>
+	<bean id="bean3" class="com.java.spr.HelloImpl">
+		<constructor-arg value="Good Evening..." />
+	</bean>
+</beans>
