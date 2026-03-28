@@ -1,0 +1,94 @@
+1) What is Hibernate 
+
+Hibernate is open source ORM tool framework for java, which simplifies database operations.
+
+It maps the java classes to database tables, eliminates the need for manual jdbc code.
+
+Key Features of Hibernate : 
+___________________________
+
+ORM Support : Maps java objects to database tables, 
+
+Database Independence : Works with multiple databases using SQL Dialects
+
+as SQL Dialect is tool which is responsible to connect to db from Hibernate
+
+and or map database tables to classes. 
+
+HQL (Hibernate Query Language) Provides database-independent, object-oriented querying
+
+Caching Mechanism : Improves performance with first-level and second-level caching
+
+Hibernate Architecture contains major interfaces as
+
+1) Configuration : This is a class that is present in org.hibernate.cfg package, 
+activates hibernate framework, it reads both configuration file and mapping files.
+
+as preferably we need to use hibernate.cfg.xml file for loading all the configurations.
+
+
+
+2) SessionFactory : Is an interface which is present in org.hibernate package and it is used to create Session object. It is immutable and thread-safe in nature. It contain 2nd level cache data, as loads optional data like connection info. etc...
+
+SessionFactory sf = new AnnotationConfiguration().configure().buildSessionFactory();
+
+buildSessionFactory() method gathers the meta-data which is in the config object.
+
+3) Session : Session is an interface which is present in org.hibernate package, Session object is created base upon SessionFactory object. 
+
+-> It connections primary/mandatory information about Hibernate. 
+-> It opens the Connection/Session with Database software through Hibernate
+-> It is a light-weight object and it is not thread-safe
+-> Session Object is used to perform CRUD operations. 
+
+Session session = sessionFactoryObject.openSession();
+
+openSession() -> this method provided by SessionFactory that creates and returns a new session state. This session is not bound to any transaction or context and is independent of any ongoing transactions in the applications. 
+
+4) Transaction : Transaction object used whenever we perform any operation based to insert/update/delete. 
+
+These operations can be stored permanently in db by using commit();
+
+5) Query : As hibernate support HQL language (Hibernate Query Language) from Query interface.
+
+A Query instance is obtained bhy calling session.createQuery(); 
+
+
+
+6) Criteria 
+
+Hibernate supports various entities :
+
+@Id annotation defined the package javax.persistence used to mark field as primary key,
+
+public class Employ {
+
+    @Id
+   
+    private int empno;
+}
+
+@GeneratedValue : Allows you to generate number for primary key column automatically, it eliminates manual Id management and ensures each entity gets a unique identifier when stored in database. 
+
+1) GenerationType.IDENTITY 
+
+		Used when db automatically generates primary key using (auto_increment)
+
+2) GenerationType.SEQUENCE 
+
+	   Used when a database sequence used to generate unique primary key values 
+
+3) GenerationType.TABLE
+
+	Uses a separate table to simulate sequences
+       Works across all databases but has performance overhead.
+
+4) GenerationType.AUTO (Default)
+
+	This is best strategy w.r.t. db
+
+
+@Entity : Makes the class as Persistence class (represent as this model class maps to table)
+
+@Table(name="Table_name") : Maps the pojo class to backend table.
+
