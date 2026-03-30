@@ -1,0 +1,44 @@
+Spring Autowiring : It is a feature of the spring framework that automatically injects dependent objects into a bean, reducing the need for explicit configuration. It helps make applications loosely coupled, cleaner and easier to maintain. 
+
+
+You can implement by using annotation called @Autowired 
+
+   -> Automatically resolves and injects dependencies between spring beans
+
+   -> Reduces the boilerplate code 
+
+Types of Autowiring are 
+
+no (default) 
+
+This is default behavior, full control over DI
+More boiolerplate configuration
+
+2) byName
+
+Spring injects the dependency by matching tghe bean Id with property name. 
+
+<bean id="job" class="com.java.spr.JobDetails" autowire="byType" />
+
+3) Constructor 
+
+     Bean injects dependencies using constructor
+
+<bean id="city" autowire="constructor" class="com.java.spr.JobDetails" />
+
+4) autodetect 
+
+	Spring First tries constructor, then byType 
+
+<bean id="city" autowire="autodetect" class="com.java.spr.JobDetails" />
+
+_________________________________________________________________________________
+
+The NamedParameterJdbcTemplate wraps the standard JDBC Template and enables the use of named parameters instead of traditional ? placeholders.  
+
+
+Instead of giving ?, we have to give param names of key/values pairs into the database. 
+
+
+
+

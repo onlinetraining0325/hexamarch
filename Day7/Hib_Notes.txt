@@ -92,3 +92,6 @@ public class Employ {
 
 @Table(name="Table_name") : Maps the pojo class to backend table.
 
+For Hibernate we need to add the below dependencies
+
+
