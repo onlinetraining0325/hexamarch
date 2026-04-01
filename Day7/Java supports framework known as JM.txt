@@ -1,0 +1,56 @@
+Java supports framework known as JMockito which allows you to test database methods with mock data (dummy data)
+
+Why Mockito
+
+As Database methods hits database, as we have uncertainity as we test the 
+methods normally using Junit there. 
+
+To overcome this java provided framework known as JMockito
+
+To start with Mockito please add the dependencies to the pom.xml file as
+
+<dependency>
+  <groupId>org.mockito</groupId>
+  <artifactId>mockito-core</artifactId>
+  <version>4.0.0</version>
+  <scope>test</scope>
+</dependency>
+
+Assume, we have an interface as EmployDao contains methods to be mocked, then to start with Mockito we need to use 	@Mock annotations 
+
+Example : 
+
+@Mock
+private EmployDao employDao;
+
+Ensures all EmployDao interface methods will be tested with mocked data. 
+
+To initialize mocking, we need to write the below code as
+
+	@Before
+	public void setUp() {
+		MockitoAnnotations.initMocks(this);
+	}
+
+How to test the methods. 
+
+As EmployDao interface has method as showEmployDao(), now that method needs to be tested then 
+
+Assume it returns 100 records from database, as we need to map that to the particular mocked data, then 
+
+Generate some mocked data as 
+
+ List<Employ> employList = Arrays.asList(
+				  new Employ(1, "Raj", "MALE","Java", "Prgrammer", 84234),
+				  new Employ(2, "Balaji", "MALE","Java", "Prgrammer", 84234),
+				  new Employ(3, "Jahnavi", "FEMALE","Java", "Prgrammer", 84234)
+				  );
+
+To map the mocked result, 
+
+when(employDao.showEmployDao()).thenReturn(employList);
+
+Then if you call the showEmployDao() method, instead of hitting the database, it redirects to employList result. 
+
+so it will be mocked to dummy data. 
+
