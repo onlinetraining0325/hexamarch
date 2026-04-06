@@ -1,0 +1,142 @@
+What is Spring Framework
+
+Its Framework that which allows yout create any light-weight application.
+
+What is Core features in Spring 
+
+Dependency Injection
+
+What is IOC Stands For 
+
+Inversion Of Control
+
+What is Container in Spring
+
+BeanFactory and ApplicationContext
+
+Which is advanced container
+
+ApplicationContext
+
+What is Spring Bean
+
+Objext managed with spring container
+
+Which annotation used to define bean
+
+@Bean or @Component
+
+Whcih annotatin used for DI
+
+@AutoWired
+
+What are types of Dependency injections in Spring 
+
+Constructor and Setter Injection
+
+What is the default scope of the spring bean
+
+singleton
+
+which scope creates new object every time 
+
+prototype
+
+How to define the scope
+
+@scope
+
+What is AOP
+
+Aspect Oriented Programming
+
+How to define component identificagtion
+
+@ComponentScan
+
+Bean Lifecyle
+
+init()
+
+service()
+destroy()
+
+What is autowiring
+
+Automatic Dependency Injection
+
+How to read Property values
+
+@value
+
+What is ApplicationContext
+
+IOC container
+
+What is Purpose of AOP
+
+for Separate begin/end process
+
+What is Aspect
+
+    Module handling cross-cutting concerns
+
+Which annotation defines an aspect
+
+@Aspect
+
+What is Joint Point
+
+Method Execution Point
+
+What is PointCut
+
+Expression selecting joint points
+
+How to define PointCut
+
+@PointCut
+
+What is an Advice
+
+   Action Taken at joint point
+
+What are types of advices 
+
+Before, After, Around
+
+Which advice runs after successful execution
+
+@AfterReturing
+
+Which advice runs after exception 
+
+@AfterThrowing
+
+Which advice surrounds method execution
+
+@Around
+
+Lining objects with Aspects known as Weaving
+
+Which expression language used in pointcut
+
+AspectJ
+
+When the default weaving happens in spring
+
+Runtime
+
+Keypoints
+
+    AOP 
+
+	Aspect
+
+	Advice
+
+	Pointcut
+	
+	Join Point
+
+	Proxy
