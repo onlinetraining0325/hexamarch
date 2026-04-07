@@ -1,0 +1,42 @@
+Log4j : Allows you to implement logging for the given application. 
+
+As you are running application, sometimes we get successful execution, errors and warnings etc all of them to be handled successfully and document properly, then we need the help of 
+
+log4j.
+
+to start with log4j, we need to add the below dependency
+
+<dependency>
+    <groupId>log4j</groupId>
+    <artifactId>log4j</artifactId>
+    <version>1.2.17</version>
+</dependency>
+
+then in resources folder, we need to create a file as log4j.properties in that please append the below code
+
+log4j.rootLogger=DEBUG, FILE, CONSOLE
+log4j.appender.FILE=org.apache.log4j.FileAppender
+log4j.appender.FILE.file=c:/logs/calculation_logger.log
+log4j.appender.FILE.layout=org.apache.log4j.PatternLayout
+log4j.appender.FILE.layout.ConversionPattern=[%d{YYYY MMM dd HH:mm:ss}] %-5p (%F:%L) - %m%n
+log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
+log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
+log4j.appender.CONSOLE.layout.ConversionPattern=[%d{YYYY MMM dd HH:mm:ss}] %-5p (%F:%L) - %m%n
+#log4j.appender.REMOTE=com.holub.log4j.RemoteAppender
+#log4j.appender.REMOTE.Port=1234
+#log4j.appender.REMOTE.layout=org.apache.log4j.PatternLayout
+#log4j.appender.REMOTE.layout.ConversionPattern=[%d{MMM dd HH:mm:ss}] %-5p (%F:%L) - %m%n
+
+You can create a logger for particular class, as
+
+private static final Logger log = Logger.getLogger("com.java.log.Calculation");
+
+Then in Calculation.java file, we are added logger. 
+
+We have various methods as
+
+log.info()
+
+log.warn()
+
+log.error() 
