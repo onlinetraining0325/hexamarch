@@ -1,0 +1,959 @@
+Here are important MCQs on Spring REST (Spring Boot) using Spring Boot — useful for interviews & exams.
+
+🔹 Spring REST MCQs
+✅ 1. Which annotation is used to create REST APIs in Spring?
+
+A) @Controller
+B) @RestController
+C) @Component
+D) @Service
+
+👉 Answer: B) @RestController
+
+✅ 2. What does @RestController combine?
+
+A) @Controller + @Service
+B) @Controller + @Repository
+C) @Controller + @ResponseBody
+D) @Component + @ResponseBody
+
+👉 Answer: C) @Controller + @ResponseBody
+
+✅ 3. Which annotation maps HTTP GET requests?
+
+A) @PostMapping
+B) @PutMapping
+C) @GetMapping
+D) @RequestBody
+
+👉 Answer: C) @GetMapping
+
+✅ 4. Which annotation is used to read JSON input?
+
+A) @PathVariable
+B) @RequestBody
+C) @RequestParam
+D) @ResponseBody
+
+👉 Answer: B) @RequestBody
+
+✅ 5. Which annotation is used for URL parameters?
+
+A) @RequestBody
+B) @PathVariable
+C) @Autowired
+D) @Component
+
+👉 Answer: B) @PathVariable
+
+✅ 6. Default return type of REST API is?
+
+A) HTML
+B) XML
+C) JSON
+D) Text
+
+👉 Answer: C) JSON
+
+✅ 7. Which HTTP method is used to update data?
+
+A) GET
+B) POST
+C) PUT
+D) DELETE
+
+👉 Answer: C) PUT
+
+✅ 8. Which HTTP method is idempotent?
+
+A) POST
+B) GET
+C) PUT
+D) Both B & C
+
+👉 Answer: D) Both B & C
+
+✅ 9. Which annotation handles query parameters?
+
+A) @RequestParam
+B) @PathVariable
+C) @RequestBody
+D) @Autowired
+
+👉 Answer: A) @RequestParam
+
+✅ 10. Which class is used to customize HTTP response?
+
+A) HttpServlet
+B) ResponseEntity
+C) RestTemplate
+D) DispatcherServlet
+
+👉 Answer: B) ResponseEntity
+
+✅ 11. Which annotation is used for exception handling globally?
+
+A) @ExceptionHandler
+B) @ControllerAdvice
+C) @RestControllerAdvice
+D) All of the above
+
+👉 Answer: D) All of the above
+
+✅ 12. Which dependency is required for REST APIs?
+
+A) spring-core
+B) spring-context
+C) spring-web
+D) spring-aop
+
+👉 Answer: C) spring-web
+
+✅ 13. What is the default port of Spring Boot?
+
+A) 8081
+B) 8080
+C) 9090
+D) 80
+
+👉 Answer: B) 8080
+
+✅ 14. Which annotation is used to map base URL?
+
+A) @GetMapping
+B) @RequestMapping
+C) @PostMapping
+D) @Component
+
+👉 Answer: B) @RequestMapping
+
+✅ 15. Which tool is commonly used to test REST APIs?
+
+A) Eclipse
+B) IntelliJ
+C) Postman
+D) Maven
+
+👉 Answer: C) Postman
+
+🔥 Advanced MCQs
+✅ 16. What does @RequestMapping(method = RequestMethod.GET) equal to?
+
+👉 Answer: @GetMapping
+
+✅ 17. Which status code means "Created"?
+
+A) 200
+B) 201
+C) 400
+D) 404
+
+👉 Answer: B) 201
+
+✅ 18. What is RestTemplate used for?
+
+👉 Answer: Calling external REST APIs
+
+✅ 19. Which annotation validates request body?
+
+👉 Answer: @Valid
+
+✅ 20. What happens if @RequestBody is missing?
+
+👉 Answer: JSON will not bind to object
+
+
+Focus on:
+
+Annotations
+HTTP methods
+Status codes
+Exception handling
+JSON mapping
+
+Spring Boot MCQs
+✅ 1. What is Spring Boot?
+
+A) ORM Tool
+B) Java Framework for microservices
+C) Database
+D) Web Server
+
+👉 Answer: B) Java Framework for microservices
+
+✅ 2. Which annotation is used to start a Spring Boot application?
+
+A) @EnableAutoConfiguration
+B) @SpringBootApplication
+C) @Configuration
+D) @ComponentScan
+
+👉 Answer: B) @SpringBootApplication
+
+✅ 3. What does @SpringBootApplication include?
+
+A) @Configuration
+B) @EnableAutoConfiguration
+C) @ComponentScan
+D) All of the above
+
+👉 Answer: D) All of the above
+
+✅ 4. Default embedded server in Spring Boot?
+
+A) Jetty
+B) Netty
+C) Tomcat
+D) GlassFish
+
+👉 Answer: C) Tomcat
+
+✅ 5. Default port number?
+
+A) 8081
+B) 8080
+C) 9090
+D) 80
+
+👉 Answer: B) 8080
+
+✅ 6. Which file is used for configuration?
+
+A) web.xml
+B) application.properties
+C) pom.xml
+D) beans.xml
+
+👉 Answer: B) application.properties
+
+✅ 7. Which dependency is required for web applications?
+
+A) spring-core
+B) spring-context
+C) spring-boot-starter-web
+D) spring-aop
+
+👉 Answer: C) spring-boot-starter-web
+
+✅ 8. What is Spring Boot Starter?
+
+A) Predefined dependency set
+B) Annotation
+C) Class
+D) Server
+
+👉 Answer: A) Predefined dependency set
+
+✅ 9. Which annotation is used to inject dependency?
+
+A) @Inject
+B) @Autowired
+C) @Bean
+D) Both A & B
+
+👉 Answer: D) Both A & B
+
+✅ 10. Which file manages dependencies?
+
+A) application.properties
+B) pom.xml
+C) web.xml
+D) config.xml
+
+👉 Answer: B) pom.xml
+
+🔹 Intermediate MCQs
+✅ 11. What is auto-configuration?
+
+👉 Automatically configures beans based on classpath
+
+✅ 12. Which annotation excludes auto-configuration?
+
+A) @EnableAutoConfiguration(exclude=...)
+B) @DisableAutoConfig
+C) @RemoveConfig
+D) None
+
+👉 Answer: A
+
+✅ 13. Which annotation creates a bean manually?
+
+A) @Component
+B) @Service
+C) @Bean
+D) @Repository
+
+👉 Answer: C) @Bean
+
+✅ 14. What is Actuator used for?
+
+👉 Monitoring & management
+
+✅ 15. Which starter is used for JPA?
+
+👉 spring-boot-starter-data-jpa
+
+🔹 Advanced MCQs
+✅ 16. What is Spring Boot Actuator endpoint for health?
+
+A) /status
+B) /health
+C) /actuator/health
+D) /app/health
+
+👉 Answer: C
+
+✅ 17. Which annotation is used for REST APIs?
+
+👉 @RestController
+
+✅ 18. What is CommandLineRunner used for?
+
+👉 Run code after application startup
+
+✅ 19. Which format does Spring Boot support for config?
+
+A) .properties
+B) .yml
+C) Both
+D) None
+
+👉 Answer: C
+
+✅ 20. Which annotation reads values from properties file?
+
+👉 @Value
+
+🔥 Scenario-Based MCQs
+✅ 21. If port 8080 is busy, what happens?
+
+👉 Application fails to start
+
+✅ 22. How to change port?
+
+👉 server.port=9090
+
+✅ 23. Which annotation handles exceptions globally?
+
+👉 @ControllerAdvice
+
+✅ 24. What is @SpringBootTest used for?
+
+👉 Testing Spring Boot apps
+
+✅ 25. What is embedded server?
+
+👉 Server inside application (no external setup)
+
+🎯 Interview Focus Areas
+Annotations
+Starters
+Auto-configuration
+REST integration
+Exception handling
+Properties
+
+_____________________________________________________________________
+
+Spring Boot Exception Handling MCQs
+✅ 1. Which annotation is used to handle exceptions at method level?
+
+A) @ControllerAdvice
+B) @ExceptionHandler
+C) @RestController
+D) @Bean
+
+👉 Answer: B) @ExceptionHandler
+
+✅ 2. Which annotation is used for global exception handling?
+
+A) @RestController
+B) @Service
+C) @ControllerAdvice
+D) @Component
+
+👉 Answer: C) @ControllerAdvice
+
+✅ 3. Which annotation combines @ControllerAdvice + @ResponseBody?
+
+A) @RestController
+B) @ResponseBody
+C) @RestControllerAdvice
+D) @ExceptionHandler
+
+👉 Answer: C) @RestControllerAdvice
+
+✅ 4. What does @ExceptionHandler do?
+
+A) Logs errors
+B) Handles specific exceptions
+C) Stops application
+D) Restarts server
+
+👉 Answer: B) Handles specific exceptions
+
+✅ 5. Where is @ExceptionHandler used?
+
+A) Inside Entity
+B) Inside Controller / Advice class
+C) Inside Repository
+D) Inside Config file
+
+👉 Answer: B) Inside Controller / Advice class
+
+✅ 6. Which class is commonly returned in REST exception handling?
+
+A) ModelAndView
+B) String
+C) ResponseEntity
+D) Servlet
+
+👉 Answer: C) ResponseEntity
+
+✅ 7. Which HTTP status is used for “Not Found”?
+
+A) 200
+B) 201
+C) 404
+D) 500
+
+👉 Answer: C) 404
+
+✅ 8. Which HTTP status is used for “Internal Server Error”?
+
+A) 400
+B) 401
+C) 404
+D) 500
+
+👉 Answer: D) 500
+
+✅ 9. Which exception occurs when no data is found in Spring JDBC?
+
+A) SQLException
+B) NullPointerException
+C) EmptyResultDataAccessException
+D) IOException
+
+👉 Answer: C) EmptyResultDataAccessException
+
+✅ 10. Which annotation is used to return JSON error response?
+
+A) @ControllerAdvice
+B) @RestControllerAdvice
+C) @Service
+D) @Component
+
+👉 Answer: B) @RestControllerAdvice
+
+🔹 Intermediate MCQs
+✅ 11. Which class is used to define custom exceptions?
+
+👉 A normal Java class extending RuntimeException
+
+✅ 12. What happens if exception is not handled?
+
+👉 Default Spring Boot error response is returned
+
+✅ 13. Which endpoint shows default error in Spring Boot?
+
+👉 /error
+
+✅ 14. Which annotation is used to set HTTP status on exception?
+
+A) @ResponseStatus
+B) @Status
+C) @HttpStatus
+D) @ErrorStatus
+
+👉 Answer: A) @ResponseStatus
+
+✅ 15. What is @Valid used for?
+
+👉 Input validation (can trigger exceptions)
+
+🔹 Advanced MCQs
+✅ 16. Which exception is thrown for invalid JSON request?
+
+A) SQLException
+B) HttpMessageNotReadableException
+C) IOException
+D) ParseException
+
+👉 Answer: B
+
+✅ 17. Which exception is thrown when validation fails?
+
+👉 MethodArgumentNotValidException
+
+✅ 18. Which class handles validation errors globally?
+
+👉 @ControllerAdvice / @RestControllerAdvice
+
+✅ 19. What is best practice for REST exception handling?
+
+A) Return HTML
+B) Return JSON with status
+C) Print stack trace
+D) Ignore exception
+
+👉 Answer: B
+
+✅ 20. Which annotation is used on exception class?
+
+👉 @ResponseStatus
+
+🔹 Scenario-Based MCQs
+✅ 21. You want to handle all exceptions in one place. What to use?
+
+👉 @ControllerAdvice
+
+✅ 22. You want JSON response for errors. What to use?
+
+👉 @RestControllerAdvice
+
+✅ 23. You want to handle only one exception type?
+
+👉 @ExceptionHandler(SpecificException.class)
+
+✅ 24. What happens if multiple handlers exist?
+
+👉 Most specific handler is chosen
+
+✅ 25. Which is better?
+
+A) Try-Catch everywhere
+B) Global Exception Handling
+
+👉 Answer: B
+
+ResponseEntity MCQs
+✅ 1. What is ResponseEntity used for?
+
+A) Database connection
+B) HTTP response handling
+C) Dependency injection
+D) Logging
+
+👉 Answer: B) HTTP response handling
+
+✅ 2. Which package contains ResponseEntity?
+
+A) java.util
+B) org.springframework.http
+C) javax.servlet
+D) org.springframework.jdbc
+
+👉 Answer: B) org.springframework.http
+
+✅ 3. What does ResponseEntity include?
+
+A) Only body
+B) Only headers
+C) Body + Status + Headers
+D) Only status
+
+👉 Answer: C) Body + Status + Headers
+
+✅ 4. How to return HTTP 200 status?
+
+A) new ResponseEntity<>(body, HttpStatus.OK)
+B) Response.ok()
+C) return OK
+D) @Status(200)
+
+👉 Answer: A
+
+✅ 5. Shortcut method for 200 OK?
+
+A) ResponseEntity.ok()
+B) ResponseEntity.success()
+C) ResponseEntity.status(200)
+D) ResponseEntity.get()
+
+👉 Answer: A
+
+✅ 6. Which method sets HTTP status?
+
+A) setStatus()
+B) status()
+C) code()
+D) http()
+
+👉 Answer: B) status()
+
+✅ 7. How to return 404 Not Found?
+
+A) ResponseEntity.error()
+B) ResponseEntity.notFound().build()
+C) ResponseEntity.fail()
+D) ResponseEntity.noData()
+
+👉 Answer: B
+
+✅ 8. How to return 201 Created?
+
+A) ResponseEntity.created()
+B) ResponseEntity.status(HttpStatus.CREATED)
+C) Both A & B
+D) None
+
+👉 Answer: C
+
+✅ 9. Which HTTP status is for success?
+
+A) 200
+B) 400
+C) 404
+D) 500
+
+👉 Answer: A
+
+✅ 10. Which class represents HTTP status codes?
+
+A) StatusCode
+B) HttpStatus
+C) ResponseStatus
+D) StatusEntity
+
+👉 Answer: B) HttpStatus
+
+🔹 Intermediate MCQs
+✅ 11. What does .build() do?
+
+👉 Builds response without body
+
+✅ 12. How to add headers?
+
+A) .header()
+B) .headers()
+C) .addHeader()
+D) Both A & B
+
+👉 Answer: D
+
+✅ 13. What is returned if body is null?
+
+👉 Empty response with status
+
+✅ 14. Can ResponseEntity return JSON?
+
+👉 Yes
+
+✅ 15. Which is better for REST APIs?
+
+A) String
+B) ModelAndView
+C) ResponseEntity
+D) Servlet
+
+👉 Answer: C
+
+🔹 Advanced MCQs
+✅ 16. Which method sets custom status?
+
+👉 ResponseEntity.status(HttpStatus.X)
+
+✅ 17. Which is correct syntax?
+
+A) ResponseEntity.ok(body)
+B) ResponseEntity(body)
+C) Response.ok(body)
+D) return body
+
+👉 Answer: A
+
+✅ 18. What happens if status is not set?
+
+👉 Default 200 OK
+
+✅ 19. Which status for bad request?
+
+A) 200
+B) 201
+C) 400
+D) 404
+
+👉 Answer: C
+
+✅ 20. Which status for unauthorized?
+
+A) 401
+B) 402
+C) 403
+D) 404
+
+👉 Answer: A
+
+🔹 Scenario-Based MCQs
+✅ 21. You want to return data + status → ?
+
+👉 ResponseEntity
+
+✅ 22. You want empty response with 204 → ?
+
+👉 ResponseEntity.noContent().build()
+
+✅ 23. You want to return error message → ?
+
+👉 ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error")
+
+✅ 24. Which is REST best practice?
+
+A) Always return String
+B) Always use ResponseEntity
+C) Return HTML
+D) Ignore status codes
+
+👉 Answer: B
+
+✅ 25. What is advantage of ResponseEntity?
+
+👉 Full control over HTTP response
+
+3. Which annotation is used for content negotiation?
+
+A) @ResponseBody
+B) @RequestMapping(produces=...)
+C) @RestController
+D) @Autowired
+
+👉 Answer: B
+
+✅ 4. What is content negotiation?
+
+👉 Selecting response format (JSON/XML) based on client request
+
+✅ 5. Which header is used for content negotiation?
+
+A) Content-Type
+B) Accept
+C) Authorization
+D) Host
+
+👉 Answer: B
+
+✅ 6. Which HTTP method is NOT idempotent?
+
+A) GET
+B) PUT
+C) DELETE
+D) POST
+
+👉 Answer: D
+
+✅ 7. What is @CrossOrigin used for?
+
+A) Security
+B) CORS handling
+C) Logging
+D) Validation
+
+👉 Answer: B
+
+✅ 8. Which class is used for REST client in Spring?
+
+A) JdbcTemplate
+B) RestTemplate
+C) DispatcherServlet
+D) BeanFactory
+
+👉 Answer: B
+
+✅ 9. What is modern alternative to RestTemplate?
+
+👉 WebClient
+
+✅ 10. Which annotation binds request headers?
+
+A) @RequestParam
+B) @PathVariable
+C) @RequestHeader
+D) @RequestBody
+
+👉 Answer: C
+
+🔹 Intermediate-Advanced MCQs
+✅ 11. Which status code for validation error?
+
+A) 200
+B) 201
+C) 400
+D) 500
+
+👉 Answer: C
+
+✅ 12. Which exception for validation failure?
+
+👉 MethodArgumentNotValidException
+
+✅ 13. Which annotation validates request body?
+
+👉 @Valid
+
+✅ 14. What is DTO in REST?
+
+👉 Data Transfer Object
+
+✅ 15. Why use DTO?
+
+👉 To avoid exposing entity directly
+
+🔹 Advanced Scenario-Based MCQs
+✅ 16. How to handle versioning in REST?
+
+A) URL versioning
+B) Header versioning
+C) Parameter versioning
+D) All
+
+👉 Answer: D
+
+✅ 17. Which annotation is used for API versioning via header?
+
+👉 @RequestMapping(headers="X-API-VERSION=1")
+
+✅ 18. What is pagination in REST?
+
+👉 Breaking large data into pages
+
+✅ 19. Which interface supports pagination?
+
+👉 PagingAndSortingRepository
+
+✅ 20. Which class represents page result?
+
+👉 Page<T>
+
+Spring Boot Microservices MCQs
+✅ 1. What is a microservice?
+
+A) Large monolithic application
+B) Small independent service
+C) Database
+D) UI component
+
+👉 Answer: B) Small independent service
+
+✅ 2. Which architecture is used in microservices?
+
+A) Monolithic
+B) Layered
+C) Distributed
+D) MVC
+
+👉 Answer: C) Distributed
+
+✅ 3. Which Spring project is used for microservices?
+
+A) Spring MVC
+B) Spring Core
+C) Spring Cloud
+D) Spring JDBC
+
+👉 Answer: C) Spring Cloud
+
+✅ 4. What is service discovery?
+
+👉 Mechanism to find services dynamically
+
+✅ 5. Which tool is used for service registry?
+
+A) MySQL
+B) Eureka Server
+C) Tomcat
+D) Maven
+
+👉 Answer: B
+
+✅ 6. Which annotation enables Eureka client?
+
+A) @EnableDiscoveryClient
+B) @EnableEurekaClient
+C) Both
+D) None
+
+👉 Answer: C
+
+✅ 7. Which component calls other microservices?
+
+A) Controller
+B) Service
+C) Feign Client
+D) Repository
+
+👉 Answer: C
+
+✅ 8. What is Feign?
+
+👉 Declarative REST client
+
+✅ 9. Which annotation is used for Feign?
+
+👉 @FeignClient
+
+✅ 10. What is API Gateway?
+
+👉 Single entry point for all services
+
+🔹 Intermediate MCQs
+✅ 11. Which tool is used for API Gateway?
+
+A) Zuul
+B) Spring Cloud Gateway
+C) Both
+D) None
+
+👉 Answer: C
+
+✅ 12. What is load balancing?
+
+👉 Distributing requests across services
+
+✅ 13. Which tool provides client-side load balancing?
+
+A) Ribbon
+B) Eureka
+C) Tomcat
+D) Hibernate
+
+👉 Answer: A
+
+✅ 14. What is circuit breaker?
+
+👉 Prevents failure propagation
+
+✅ 15. Which library provides circuit breaker?
+
+A) Hystrix
+B) Resilience4j
+C) Both
+D) None
+
+👉 Answer: C
+
+🔹 Advanced MCQs
+✅ 16. What is Config Server?
+
+👉 Centralized configuration management
+
+✅ 17. Which dependency is used for config server?
+
+👉 spring-cloud-config-server
+
+✅ 18. What is distributed tracing?
+
+👉 Tracking requests across services
+
+✅ 19. Which tool is used for tracing?
+
+A) Zipkin
+B) Sleuth
+C) Both
+D) None
+
+👉 Answer: C
+
+✅ 20. What is message broker?
+
+👉 Enables async communication
