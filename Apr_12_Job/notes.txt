@@ -1,0 +1,63 @@
+Spring Boot with Spring Batch 
+
+Spring batch is a lightweight yet robust framework designed for batch processing, the automated execution of large data tasks without human intervention. It provides reusable components for logging, transaction management, job scheduling and error handling.
+
+Batch processing refers to executing repetitive, data-intensive tasks in bulk.  
+
+	-> Processing large datasets
+	-> Data Migration
+	-> Generating Reports
+	-> ETL (Extract, Transform and Load) Operations
+
+Spring Batch is purpose-built for such use cases by splitting jobs into smaller, manageable steps that can run parallelly.
+
+	A job in spring batch represents the complete batch process, while steps define the logical phases within that job.
+
+	Job : Encapsulates the full batch process, consisting of multiple steps
+	Step : Represents one stage of job - typically involves reading, processing and writing 		data
+
+	Flow : Defines the execution order of steps, you can create conditional or parallel flows
+
+1) ItemReader : Reads input data from the source such as database, file, or message queue, it reads one record at a time and passes the processor
+
+public class StreamReader implements ItemReader<String> {
+
+	@Override
+	public String read() {
+	}
+}
+
+2) ItemProcessor : Applies business logic or transformation on each item read by the reader
+
+public class StringProcessor implements ItemProcessor<String, String> {
+
+	@Override
+	public String process(String item) {
+	}
+}
+
+3) ItemWriter : Writes the processed data to the desired output, such as database or console
+
+public class ConsoleWriter implements ItemWriter<String> {
+
+}
+
+How we need to process : 
+________________________
+
+streamBuilderFactory.get("step")
+.<String,String>chunk(10.reader(reader()).processor(processor()).writer(writer()).build();
+
+10 items are read and processed
+once the chunk limit reached, all 10 items are written in a single transaction
+
+Job Repository and Metadata
+
+  -> JobInstance : Contains unique representation configuration
+
+  -> JobExecution : Tracks job runs, including status and timestamps
+
+  -> StepExecution : Records details of each step execution. 
+
+
+
