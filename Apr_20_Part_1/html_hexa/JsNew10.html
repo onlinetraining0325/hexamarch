@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <script>
+            function show() {
+                var msg = "Welcome to Javascript...from Hexaware...Thank You All...";
+                var result="";
+                result+="Length of String is   " +msg.length + "<br/>";
+                result+="First Occurrence of Given Char is  " +msg.indexOf("o") + "<br/>";
+                result+="Char at 5th position   " +msg.charAt(5) + "<br/>";
+                result+="Lower Case String is  " +msg.toLowerCase() + "<br/>";
+                result+="Upper Case String is   " +msg.toUpperCase() + "<br/>";
+                result+="Part of String  " +msg.substring(10,20) + "<br/>";
+                result+="Replaced String  " +msg.replace("Javascript", "Java") + "<br/>";
+                document.getElementById("result").innerHTML = result;
+            }
+        </script>
+    </head>
+<body onload="show()">
+    <span id="result"></span>
+</body>
+</html>

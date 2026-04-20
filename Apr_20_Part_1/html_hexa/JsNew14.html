@@ -1,0 +1,131 @@
+<html>
+    <head>
+        <title>Updated</title>
+        <script>
+            function show() {
+                var today = new Date();
+                frmLeave.appliedOn.value = today.toISOString().substring(0,10);
+            }
+            function validation1() {
+                var today = new Date();
+                var startDate;
+                startDate = Date.parse(frmLeave.leaveStartDate.value);
+                var ms =   startDate - today.getTime();
+                var days = (ms/(1000 * 60 * 60 * 24));
+                // alert(days);
+                if (days < 0) {
+                    document.getElementById("errLeaveStartDate").innerHTML = "Leave Start Date Cannot be Yesterday's Date...".fontcolor("red");
+                } else {
+                    document.getElementById("errLeaveStartDate").innerHTML = "";
+                }
+            }
+            function tat() {
+                var startDate, endDate;
+                startDate = Date.parse(frmLeave.leaveStartDate.value);
+                endDate = Date.parse(frmLeave.leaveEndDate.value);
+                var ms = endDate - startDate;
+                var days = (ms/(1000 * 60 * 60 * 24));
+                if (days < 0) {
+                    document.getElementById("errLeaveEndDate").innerHTML = "Leave Start Date Cannot be Greater than Leave End Date...".fontcolor("red");
+                }
+                days++;
+                frmLeave.noOfDays.value = days;
+            }
+            function final() {
+                var result="";
+                result+="Employ Name   <b>" +frmLeave.employName.value + "</b><br/>";
+                result+="Manager Name  <b>" +frmLeave.managerName.value + "</b><br/>";
+                result+="Leave Start Date <b>" +frmLeave.leaveStartDate.value + "</b><br/>";
+                result+="Leave End Date  <b>" +frmLeave.leaveEndDate.value + "</b><br/>";
+                result+="No.of Days  <b>" +frmLeave.noOfDays.value + "</b><br/>";
+                result+="Applied On <b> " +frmLeave.appliedOn.value + "</b><br/>";
+                result+="Leave Type  <b>" +frmLeave.leaveType.value + "</b><br/>";
+                result+="Leave Reason <b> " +frmLeave.leaveReason.value + "</b><br/>";
+                document.getElementById("result").innerHTML = result;
+            }
+        </script>
+    </head>
+    <body onload="show()">
+        <form name="frmLeave">
+            <table border="3" align="center">
+                <tr>
+                    <th colspan="2">
+                        Leave Application Form
+                    </th>
+                </tr>
+                <tr>
+                    <th>Employ Name</th>
+                    <td>
+                        <select name="employName">
+                            <option value="Sam Arlin">Sam</option>
+                            <option value="SivaHari">SivaHari</option>
+                            <option value="Poojitha">Poojitha</option>
+                            <option value="Adesh">Adesh</option>
+                            <option value="Shakira">Shakira</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Manager Name</th>
+                    <td>
+                        <select name="managerName">
+                            <option value="Soumiya">Soumiya</option>
+                            <option value="Lata">Lata</option>
+                            <option value="Shyamala">Shyamala</option>
+                            <option value="Rajlakshmi">Rajlakshmi</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Leave Start Date</th>
+                    <td><input type="date" name="leaveStartDate" 
+                            onblur="validation1()" />
+                        <span id="errLeaveStartDate"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Leave End Date</th>
+                    <td>
+                        <input type="date" name="leaveEndDate" onblur="tat()" /> 
+                        <span id="errLeaveEndDate"></span>
+    
+                    </td>
+                </tr>
+                <tr>
+                    <th>No.Of Days</th>
+                    <td>
+                        <input type="number" name="noOfDays" readonly />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Applied On</th>
+                    <td>
+                        <input type="text" name="appliedOn" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Leave Type</th>
+                    <td>
+                        <select name="leaveType">
+                            <option value="EL">EL</option>
+                            <option value="PL">PL</option>
+                            <option value="ML">ML</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Leave Reason</th>
+                    <td>
+                        <input type="text" name="leaveReason" />
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <input type="button" value="Apply Leave" onclick="final()" />
+                    </th>
+                </tr>
+            </table>
+        </form>
+        <span id="result"></span>
+    </body>
+</html>

@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <script>
+            var questions = 
+            [
+                "1. HTML Stands For",
+                "2. What is Object Oriented Programming",
+                "3. FTP Stands For",
+                "4. Identify Synax for HTML File",
+                "5. Javascript is Scripting or Programming"
+            ]
+            var questionNo = 0;
+            var totalQuestions = questions.length;
+            function load() {
+                document.getElementById("question").innerHTML = questions[questionNo];
+            }
+            function prevQuestion() {
+                questionNo--;
+                if (questionNo < 0) {
+                    questionNo = 0;
+                    alert("No Questions Before this...")
+                }
+                load();
+            }
+            function nextQuestion() {
+                questionNo++;
+                if (questionNo == totalQuestions) {
+                    questionNo = totalQuestions -1;
+                    alert("End of Exam...");
+                }
+                load();
+            }
+        </script>
+    </head>
+<body onload="load()">
+    <span id="question"></span>
+    <br/><br/>
+    <input type="button" value="Next Question" onclick="nextQuestion()" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="button" value="Previous Question" onclick="prevQuestion()" />
+</body>
+</html>

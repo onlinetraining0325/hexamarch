@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <script>
+            function show(){
+                var msg ="";
+                var obj = new Date();
+                msg += obj;
+                msg+="<br/>Date is  " +obj.getDate();
+                var month = obj.getMonth();
+                month++;
+                msg+="<br/> Month is  " +month;
+                msg+="<br/> Year is " +obj.getFullYear();
+                msg+="<br/> Time is   " +obj.getHours() + ":" +obj.getMinutes() 
+                                + ":" +obj.getSeconds(); 
+                document.getElementById("result").innerHTML = msg;
+            }
+        </script>
+    </head>
+<body onload="show()">
+    <span id="result"></span>
+</body>
+</html>

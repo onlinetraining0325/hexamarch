@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <script>
+            var myArray = new Array(
+                {empno:1,name:'Rajitha',dept:'Java',desig:'Programmer',basic:88324},
+                {empno:2,name:'Nagaraju',dept:'Dotnet',desig:'Manager',basic:90042},
+                {empno:3,name:'Surya',dept:'Dotnet',desig:'TeamLead',basic:94422},
+                {empno:4,name:'Ashwini',dept:'Sql',desig:'Manager',basic:66622},
+                {empno:5,name:'Vijay',dept:'Sql',desig:'Expert',basic:66622},
+                
+            );
+        </script>
+    </head>
+<body>
+    <ol type="1">
+        <script>
+            for(var v in myArray) {
+                document.writeln("<li> Employ No <b>" +myArray[v].empno 
+                            + "</b> Employ Name  <b>" +myArray[v].name
+                            + "</b>  Department   <b>" +myArray[v].dept
+                            + "</b>  Designation  <b>" +myArray[v].desig
+                            + "</b>  Basic  <b>" +myArray[v].basic + "</b>"
+                            );
+            }
+            
+        </script>
+    </ol>
+</body>
+</html>
