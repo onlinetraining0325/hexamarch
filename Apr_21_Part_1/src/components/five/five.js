@@ -1,0 +1,26 @@
+import React, {Component, useState} from 'react';
+
+const Five = () => {
+
+  const [count,setCount] = useState(0)
+
+  const increment = () => {
+    setCount(count+1);
+  }
+
+  const decrement = () => {
+    setCount(count-1);
+  }
+
+  return(
+    <div>
+      <p>Count is : <b>{count}</b></p>
+      <br/>
+      <input type="button" value="Increment" onClick={increment} />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="button" value="Decrement" onClick={decrement}  />
+    </div>
+  )
+}
+
+export default Five;
