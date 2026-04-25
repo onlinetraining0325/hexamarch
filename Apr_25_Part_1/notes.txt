@@ -1,0 +1,30 @@
+
+
+React Redux
+____________
+
+React Redux is a open source javascript library used to implement state management techniques.
+
+State management ensures, during now.of round trips, if you want to maintain page and control specific values, then we need to follow the statement in client-side/server-side.
+
+
+Why we need to use the redux
+
+-> To follow the UI bindings for reach application, it is kept up-to-date with 
+any API changes to ensure that your React components behave as expected
+
+-> It encourages good 'React' architecture
+
+-> It implements many performance optimizations internally, which allows to 
+components re-render only when it actually needs
+
+The components we have in Redux archirecture are
+
+1) Store : A store is a place where the entire state of the application lists, it manages the status of the application and has the dispatch(action) function. It acts as a brain responsible for all moving parts in redux
+
+2) Action : Action is sent or dispatched from the view which are payloads that can be read by reducers, it is a pure object created to store the information of the user's event.  It includes information such as type of action, time of occurrence, location of occurrence, it coordinates and which state it aims to change
+
+3) Reducer : Reducer read the payloads from the actions and then updates the store via the state accordingly 
+
+npm install @reduxjs/toolkit
+
